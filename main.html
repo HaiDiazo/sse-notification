@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>Testing SSE</title>
+    </head>
+    <body>
+        <h1>Notification</h1>
+        <p id="myElement">Nothing here!<br></p>
+        <script type="application/javascript">
+            const eventSource = new EventSource("http://127.0.0.1:8999/queue/test-message")
+            var element = document.getElementById("myElement");
+            eventSource.onmessage = function(event) {
+                alert(event.data)
+                element.append(event.data, document.createElement("br"))
+                console.log(event.data)
+            }
+        </script>
+    </body>
+</html>
